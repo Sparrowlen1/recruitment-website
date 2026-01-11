@@ -62,3 +62,23 @@ function deleteJob(i){
 }
 
 renderJobs();
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+let touchStartY = 0;
+
+document.addEventListener("touchstart", e => {
+  touchStartY = e.touches[0].clientY;
+});
+
+document.addEventListener("touchend", e => {
+  let touchEndY = e.changedTouches[0].clientY;
+
+  if (touchEndY - touchStartY > 150) {
+    const pass = prompt("Enter admin passkey:");
+    if (pass === "admin123") {
+      document.querySelector(".admin").style.display = "block";
+      document.querySelector(".admin").scrollIntoView({ behavior: "smooth" });
+    }
+  }
+});
