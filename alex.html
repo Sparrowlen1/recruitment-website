@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexshee Holdings Ltd | Talent Recruitment Agency</title>
+<script src="https://kit.fontawesome.com/6ae23c62b1.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --primary:#0b3c5d;
+  --secondary:#f4b41a;
+  --light-bg:#f9f9f9;
+  --dark-bg:#1e1e1e;
+  --light-text:#222;
+  --dark-text:#f9f9f9;
+  --card-bg:#fff;
+  --dark-card:#2a2a2a;
+}
+[data-theme="light"]{
+  --bg:var(--light-bg);
+  --text:var(--light-text);
+  --card:var(--card-bg);
+}
+[data-theme="dark"]{
+  --bg:var(--dark-bg);
+  --text:var(--dark-text);
+  --card:var(--dark-card);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.3s;
+}
+
+/* HEADER */
+header{
+  position:fixed;top:0;width:100%;
+  background:var(--primary);
+  padding:1rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  z-index:1000;
+}
+header img{height:50px}
+nav a{
+  color:#fff;text-decoration:none;
+  margin-left:1rem;font-weight:bold;
+}
+.btn-theme{
+  background:#fff;color:var(--primary);
+  border:none;padding:.5rem .8rem;
+  cursor:pointer;border-radius:4px;
+}
+
+/* HERO */
+.hero{
+  height:90vh;
+  background:url('hero.jpg') center/cover no-repeat;
+  display:flex;justify-content:center;align-items:center;
+  text-align:center;padding-top:5rem;
+  color:#fff;position:relative;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.55);
+}
+.hero div{position:relative;z-index:1}
+.hero h2{font-size:3rem;margin-bottom:1rem}
+
+/* SECTIONS */
+section{padding:5rem 2rem}
+.bg-img{
+  background-size:cover;
+  background-position:center;
+  color:#fff;text-align:center;
+  position:relative;
+}
+.bg-img::before{
+  content:"";position:absolute;inset:0;
+  background:rgba(0,0,0,.6);
+}
+.bg-img *{position:relative;z-index:1}
+
+h2{
+  text-align:center;
+  margin-bottom:1rem;
+  color:var(--primary);
+}
+[data-theme="dark"] h2{color:var(--secondary)}
+
+p{
+  max-width:900px;
+  margin:0 auto 1rem;
+  line-height:1.6;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.8rem;margin-top:2rem;
+}
+.card{
+  background:var(--card);
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  overflow:hidden;
+}
+.card img{
+  width:100%;height:180px;
+  object-fit:cover;
+}
+.card h3{margin:1rem;color:var(--primary)}
+[data-theme="dark"] .card h3{color:var(--secondary)}
+.card p{margin:0 1rem 1.2rem}
+
+/* JOBS */
+.job{
+  background:var(--card);
+  display:flex;gap:1rem;
+  padding:1rem;border-radius:8px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  margin-bottom:1rem;
+}
+.job img{
+  width:120px;height:120px;
+  object-fit:cover;border-radius:6px;
+}
+.job button{
+  background:red;color:#fff;
+  border:none;padding:.5rem 1rem;
+  border-radius:5px;cursor:pointer;
+}
+
+/* ADMIN */
+.admin{
+  display:none;
+  max-width:700px;margin:auto;
+  background:var(--card);
+  padding:2rem;border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.admin input,.admin textarea{
+  width:100%;padding:.8rem;
+  margin-bottom:.8rem;
+}
+.admin button{
+  background:var(--primary);
+  color:#fff;border:none;
+  padding:.8rem 1.4rem;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:var(--primary);
+  color:#fff;text-align:center;
+  padding:2rem;
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<header>
+  <img src="alex logo.png">
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#why">Why Us</a>
+    <a href="#certs">Certifications</a>
+    <a href="#jobs">Jobs</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="btn-theme" onclick="toggleTheme()">Dark / Light</button>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Talent Meets Opportunity</h2>
+    <p>We connect professionals with rewarding global careers and offer services that support their journey.</p>
+  </div>
+</section>
+
+<section id="about" class="bg-img" style="background-image:url('abouts.png')">
+  <h2>About Alexshee Holdings</h2>
+  <p>We specialize in global recruitment, staffing, and workforce solutions.</p>
+  <p><B><I>CAPTURING GREATNESS</p>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="cards">
+    <div class="card">
+      <img src="recruitment.jpg">
+      <h3>RECRUITMENT</h3>
+      <p>At Alexshee Holdings, we connect organizations with the right talent through executive search, permanent placement, and temporary staffing solutions. We provide candidate screening and vetting, build talent pipelines, and offer recruitment process support to streamline hiring. Our services also include market insights and diversity-focused recruitment, ensuring your organization attracts skilled professionals efficiently and inclusively.</p>
+    </div>
+    <div class="card">
+      <img src="ticket and visa application.jpg">
+      <h3>TICKET AND VISA APPLICATION</h3>
+      <p>We assist professionals with flight bookings and visa processing, ensuring a smooth and hassle-free travel experience for work assignments, interviews, or relocation.</p>
+    </div>
+    <div class="card">
+      <img src="pass.jpg">
+      <h3>PASSPORT APPLICATION</h3>
+      <p>We guide clients through the passport application and renewal process, making it fast, accurate, and stress-free.</p>
+    </div>
+    <div class="card">
+      <img src="car hire.jpg">
+      <h3>CAR HIRE SERVICES</h3>
+      <p>We provide reliable car hire solutions, offering safe and convenient transportation for business trips, airport transfers, or daily commutes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="bg-img" style="background-image:url('why choose use.jpg')">
+  <h2><b>Why Choose Us</h2>
+  <p>We deliver talent with integrity, excellence, and transparency, connecting organizations with skilled professionals efficiently. Our global reach, personalized approach, and commitment to quality ensure the best recruitment solutions for your business needs.</p>
+</section>
+
+<section id="certs" >
+  <h2>Certifications & Impact</h2>
+  <div class="cards">
+    <div class="card"><h3>ISO 9001</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+    <p>Certified Quality Systems</p></div>
+    <div class="card"><h3>500+</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+    <p>People Placed</p></div>
+    <div class="card"><h3>97%</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i>
+    <p>Client Satisfaction</p></div>
+  </div>
+</section>
+
+<section id="jobs" >
+  <h2>Current Job Openings</h2>
+  <div id="jobList"></div>
+</section>
+
+<section class="admin" id="adminPanel">
+  <h2>Admin – Manage Jobs</h2>
+  <input id="jobTitle" placeholder="Job Title">
+  <textarea id="jobDesc" placeholder="Job Description"></textarea>
+  <input type="file" id="jobImage">
+  <button onclick="addJob()">Add Job</button>
+</section>
+
+<section id="contact" class="bg-img" style="background-image:url('contact.jpg')">
+  <h2>Contact Us</h2>
+  <p>📍 Nairobi; Kenya house complex 4th floor</p>
+  <p>📞 +254 703 558 541</p> 
+  <p>📧 alexomndi2010@gmail.com</p>
+</section>
+
+<footer>
+  &copy; 2026 Alexshee Holdings Ltd — All Rights Reserved
+</footer>
+
+<script>
+function toggleTheme(){
+  document.body.dataset.theme =
+    document.body.dataset.theme==="light"?"dark":"light";
+}
+
+/* ADMIN ACCESS */
+const ADMIN_PASSKEY="alexshee@2026";
+let isAdmin=false;
+
+document.addEventListener("keydown",e=>{
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){
+    const pass=prompt("Enter admin passkey:");
+    if(pass===ADMIN_PASSKEY){
+      isAdmin=true;
+      document.getElementById("adminPanel").style.display="block";
+      renderJobs();
+      alert("Admin access granted");
+    }else alert("Wrong passkey");
+  }
+});
+
+/* JOB SYSTEM */
+let jobs=JSON.parse(localStorage.getItem("jobs"))||[];
+
+function renderJobs(){
+  const list=document.getElementById("jobList");
+  list.innerHTML="";
+  jobs.forEach((job,i)=>{
+    list.innerHTML+=`
+      <div class="job">
+        <img src="${job.image}">
+        <div>
+          <h3>${job.title}</h3>
+          <p>${job.desc}</p>
+          ${isAdmin?`<button onclick="deleteJob(${i})">Delete</button>`:""}
+        </div>
+      </div>`;
+  });
+}
+
+function addJob(){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    jobs.push({
+      title:jobTitle.value,
+      desc:jobDesc.value,
+      image:reader.result
+    });
+    localStorage.setItem("jobs",JSON.stringify(jobs));
+    renderJobs();
+    jobTitle.value="";jobDesc.value="";jobImage.value="";
+  };
+  reader.readAsDataURL(jobImage.files[0]);
+}
+
+function deleteJob(i){
+  if(confirm("Delete this job?")){
+    jobs.splice(i,1);
+    localStorage.setItem("jobs",JSON.stringify(jobs));
+    renderJobs();
+  }
+}
+
+renderJobs();
+</script>
+
+</body>
+</html>
