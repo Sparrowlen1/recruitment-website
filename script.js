@@ -12,10 +12,23 @@ let isAdmin = localStorage.getItem("isAdmin") === "true";
 function showAdmin() {
   isAdmin = true;
   localStorage.setItem("isAdmin", "true");
+
   const adminPanel = document.getElementById("adminPanel");
   adminPanel.style.display = "block";
   adminPanel.scrollIntoView({ behavior: "smooth" });
+
   renderJobs();
+}
+
+/* LOGOUT ADMIN (OPTION 1 FIX) */
+function logoutAdmin() {
+  isAdmin = false;
+  localStorage.removeItem("isAdmin");
+
+  const adminPanel = document.getElementById("adminPanel");
+  adminPanel.style.display = "none";
+
+  alert("Admin logged out");
 }
 
 /* ================= DESKTOP ACCESS ================= */
@@ -112,7 +125,8 @@ function toggleMenu() {
 
 /* ================= AUTO RESTORE ADMIN ================= */
 if (isAdmin) {
-  showAdmin();
+  const adminPanel = document.getElementById("adminPanel");
+  adminPanel.style.display = "block";
 }
 
 /* INITIAL LOAD */

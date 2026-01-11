@@ -28,7 +28,6 @@
   <button class="btn-theme" onclick="toggleTheme()">Dark / Light</button>
 </header>
 
-
 <section class="hero">
   <div>
     <h2>Talent Meets Opportunity</h2>
@@ -39,7 +38,7 @@
 <section id="about" class="bg-img" style="background-image:url('images/abouts.png')">
   <h2>About Alexshee Holdings</h2>
   <p>We specialize in global recruitment, staffing, and workforce solutions.</p>
-  <p><B><I>CAPTURING GREATNESS</p>
+  <p><b><i>CAPTURING GREATNESS</i></b></p>
 </section>
 
 <section id="services">
@@ -68,34 +67,36 @@
   </div>
 </section>
 
-<section id="why" class="bg-img" style="background-image:url('images/why\ choose\ use.jpg')">
-  <h2><b>Why Choose Us</h2>
+<section id="why" class="bg-img" style="background-image:url('images/why choose use.jpg')">
+  <h2>Why Choose Us</h2>
   <p>We deliver talent with integrity, excellence, and transparency, connecting organizations with skilled professionals efficiently. Our global reach, personalized approach, and commitment to quality ensure the best recruitment solutions for your business needs.</p>
 </section>
 
-<section id="certs" >
+<section id="certs">
   <h2>Certifications & Impact</h2>
   <div class="cards">
     <div class="card"><h3>ISO 9001</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-    <p>Certified Quality Systems</p></div>
+      <p>Certified Quality Systems</p></div>
     <div class="card"><h3>500+</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-    <p>People Placed</p></div>
+      <p>People Placed</p></div>
     <div class="card"><h3>97%</h3><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half"></i>
-    <p>Client Satisfaction</p></div>
+      <p>Client Satisfaction</p></div>
   </div>
 </section>
 
-<section id="jobs" >
+<section id="jobs">
   <h2>Current Job Openings</h2>
   <div id="jobList"></div>
 </section>
 
+<!-- ================= ADMIN PANEL ================= -->
 <section class="admin" id="adminPanel">
   <h2>Admin – Manage Jobs</h2>
   <input id="jobTitle" placeholder="Job Title">
   <textarea id="jobDesc" placeholder="Job Description"></textarea>
   <input type="file" id="jobImage">
   <button onclick="addJob()">Add Job</button>
+  <button onclick="logoutAdmin()" style="background:red; color:#fff; margin-top:1rem;">Logout Admin</button>
 </section>
 
 <section id="contact" class="bg-img" style="background-image:url('images/contact.jpg')">
@@ -108,7 +109,6 @@
 <footer>
   &copy; 2026 Alexshee Holdings Ltd — All Rights Reserved
 </footer>
-
 
 </body>
 </html>
