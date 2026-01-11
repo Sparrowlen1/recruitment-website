@@ -1,84 +1,119 @@
-function toggleTheme(){
+/* ================= THEME TOGGLE ================= */
+function toggleTheme() {
   document.body.dataset.theme =
-    document.body.dataset.theme==="light"?"dark":"light";
+    document.body.dataset.theme === "light" ? "dark" : "light";
 }
 
-/* ADMIN ACCESS */
-const ADMIN_PASSKEY="alexshee@2026";
-let isAdmin=false;
+/* ================= ADMIN CONFIG ================= */
+const ADMIN_PASSKEY = "alexshee@2026";
+let isAdmin = localStorage.getItem("isAdmin") === "true";
 
-document.addEventListener("keydown",e=>{
-  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="a"){
-    const pass=prompt("Enter admin passkey:");
-    if(pass===ADMIN_PASSKEY){
-      isAdmin=true;
-      document.getElementById("adminPanel").style.display="block";
-      renderJobs();
+/* SHOW ADMIN PANEL */
+function showAdmin() {
+  isAdmin = true;
+  localStorage.setItem("isAdmin", "true");
+  const adminPanel = document.getElementById("adminPanel");
+  adminPanel.style.display = "block";
+  adminPanel.scrollIntoView({ behavior: "smooth" });
+  renderJobs();
+}
+
+/* ================= DESKTOP ACCESS ================= */
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a") {
+    const pass = prompt("Enter admin passkey:");
+    if (pass === ADMIN_PASSKEY) {
+      showAdmin();
       alert("Admin access granted");
-    }else alert("Wrong passkey");
+    } else {
+      alert("Wrong passkey");
+    }
   }
 });
 
-/* JOB SYSTEM */
-let jobs=JSON.parse(localStorage.getItem("jobs"))||[];
+/* ================= MOBILE ACCESS (LONG PRESS) ================= */
+let pressTimer = null;
 
-function renderJobs(){
-  const list=document.getElementById("jobList");
-  list.innerHTML="";
-  jobs.forEach((job,i)=>{
-    list.innerHTML+=`
+document.addEventListener("touchstart", () => {
+  pressTimer = setTimeout(() => {
+    const pass = prompt("Enter admin passkey:");
+    if (pass === ADMIN_PASSKEY) {
+      showAdmin();
+      alert("Admin access granted");
+    } else {
+      alert("Wrong passkey");
+    }
+  }, 1500); // 1.5 seconds long press
+});
+
+document.addEventListener("touchend", () => {
+  clearTimeout(pressTimer);
+});
+
+/* ================= JOB SYSTEM ================= */
+let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+function renderJobs() {
+  const list = document.getElementById("jobList");
+  list.innerHTML = "";
+
+  jobs.forEach((job, i) => {
+    list.innerHTML += `
       <div class="job">
         <img src="${job.image}">
         <div>
           <h3>${job.title}</h3>
           <p>${job.desc}</p>
-          ${isAdmin?`<button onclick="deleteJob(${i})">Delete</button>`:""}
+          ${isAdmin ? `<button onclick="deleteJob(${i})">Delete</button>` : ""}
         </div>
-      </div>`;
+      </div>
+    `;
   });
 }
 
-function addJob(){
-  const reader=new FileReader();
-  reader.onload=()=>{
+function addJob() {
+  if (!isAdmin) return alert("Unauthorized");
+
+  const reader = new FileReader();
+  reader.onload = () => {
     jobs.push({
-      title:jobTitle.value,
-      desc:jobDesc.value,
-      image:reader.result
+      title: jobTitle.value,
+      desc: jobDesc.value,
+      image: reader.result
     });
-    localStorage.setItem("jobs",JSON.stringify(jobs));
+
+    localStorage.setItem("jobs", JSON.stringify(jobs));
     renderJobs();
-    jobTitle.value="";jobDesc.value="";jobImage.value="";
+
+    jobTitle.value = "";
+    jobDesc.value = "";
+    jobImage.value = "";
   };
-  reader.readAsDataURL(jobImage.files[0]);
+
+  if (jobImage.files[0]) {
+    reader.readAsDataURL(jobImage.files[0]);
+  }
 }
 
-function deleteJob(i){
-  if(confirm("Delete this job?")){
-    jobs.splice(i,1);
-    localStorage.setItem("jobs",JSON.stringify(jobs));
+function deleteJob(i) {
+  if (!isAdmin) return;
+
+  if (confirm("Delete this job?")) {
+    jobs.splice(i, 1);
+    localStorage.setItem("jobs", JSON.stringify(jobs));
     renderJobs();
   }
 }
 
-renderJobs();
+/* ================= MOBILE MENU ================= */
 function toggleMenu() {
   document.getElementById("navMenu").classList.toggle("active");
 }
-let touchStartY = 0;
 
-document.addEventListener("touchstart", e => {
-  touchStartY = e.touches[0].clientY;
-});
+/* ================= AUTO RESTORE ADMIN ================= */
+if (isAdmin) {
+  showAdmin();
+}
 
-document.addEventListener("touchend", e => {
-  let touchEndY = e.changedTouches[0].clientY;
-
-  if (touchEndY - touchStartY > 150) {
-    const pass = prompt("Enter admin passkey:");
-    if (pass === "admin123") {
-      document.querySelector(".admin").style.display = "block";
-      document.querySelector(".admin").scrollIntoView({ behavior: "smooth" });
-    }
-  }
-});
+/* INITIAL LOAD */
+renderJobs();
